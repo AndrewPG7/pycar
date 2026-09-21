@@ -4,7 +4,7 @@ from components.motor import Motor
 
 
 class GPIOMotor(Motor):
-    def __init__(self, name, in1, in2, en, pwm_frequency=1000):
+    def __init__(self, name, in1, in2, en, pwm_frequency=1200):
         self.name = name
         self.in1 = in1
         self.in2 = in2

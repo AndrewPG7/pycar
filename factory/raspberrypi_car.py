@@ -3,6 +3,8 @@ from control.drive_control import DriveControl
 from control.light_control import LightControl
 from hardware.raspberrypi.light import GPIOLight
 from hardware.raspberrypi.motor import GPIOMotor
+from input.car_commands import CarCommands
+from input.mock_input import MockInput
 
 #from hardware.raspberrypi.steer import GPIOSteer
 
@@ -11,12 +13,12 @@ HEADLIGHT_PIN = 24
 BLINKER_R_PIN = 25
 BLINKER_L_PIN =  23
                         # L293D PIN:
-MOTOR_R_IN_1_PIN =  5   # 2
-MOTOR_R_IN_2_PIN =  6   # 7
-MOTOR_R_EN_PIN =    26  # 1
-MOTOR_L_IN_1_PIN =  24  # 15
-MOTOR_L_IN_2_PIN =  25  # 10
-MOTOR_L_EN_PIN =    23  # 9
+MOTOR_R_IN_1_PIN =  23   # 2
+MOTOR_R_IN_2_PIN =  24  # 7
+MOTOR_R_EN_PIN =    18  # 1
+MOTOR_L_IN_1_PIN =  16  # 15
+MOTOR_L_IN_2_PIN =  20  # 10
+MOTOR_L_EN_PIN =    12  # 9
 
 
 def create_car():
@@ -34,6 +36,20 @@ def create_car():
     )
 
     drive_control = DriveControl(motor_right, motor_left)
+
+    input = MockInput([
+        CarCommands(speed=0.0),
+        CarCommands(speed=0.3),
+        CarCommands(speed=0.5),
+        CarCommands(speed=0.8),
+        CarCommands(speed=1.0),
+        CarCommands(speed=0.0),
+        CarCommands(speed=0.3),
+        CarCommands(speed=0.5),
+        CarCommands(speed=0.8),
+        CarCommands(speed=1.0),
+        CarCommands(speed=0.0),
+    ])
 
     """
     head_light = GPIOLight(
@@ -54,7 +70,8 @@ def create_car():
 
     return Car(
         "GPIO",
-        drive_control
+        drive_control,
+        input=input
     )
 
 def destroy_car(car):
