@@ -1,7 +1,5 @@
 import time
 
-from components.light import Light
-
 BLINK_INTERVAL = 0.5
 
 class LightControl:
