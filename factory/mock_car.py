@@ -5,6 +5,7 @@ from hardware.mock.light import MockLight
 from hardware.mock.motor import MockMotor
 from hardware.mock.steer import MockSteer
 from input.car_commands import CarCommands
+from input.keyboard_input import KeyboardInput
 from input.mock_input import MockInput
 
 
@@ -23,6 +24,7 @@ def create_car():
 
     light_control = LightControl(head_light, blinker_right, blinker_left)
 
+    """
     input = MockInput(
         [
             CarCommands(speed=0.0),
@@ -38,6 +40,9 @@ def create_car():
             CarCommands(speed=0.0),
         ]
     )
+    """
+
+    input = KeyboardInput()
 
     return Car("MOCK CAR", drive_control, light_control, input)
 

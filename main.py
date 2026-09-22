@@ -11,7 +11,7 @@ try:
     print(f"START {car.name}")
 
     while car.update():
-        time.sleep(3)
+        time.sleep(0.5)
 
 except KeyboardInterrupt:
     sys.exit()
