@@ -31,7 +31,7 @@ class GPIOMotor(Motor):
             self.motorIn2.on()
         else:
             self.stop()
-        self.motorEn.value = speed
+        self.motorEn.value = abs(speed)
 
     def destroy(self):
         self.motorIn1.close()
