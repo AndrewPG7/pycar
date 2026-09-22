@@ -5,15 +5,11 @@ from input.input import Input
 
 
 class KeyboardInput(Input):
-    def __init__(self):
-        self.speed = 0.0
     
     def get_command(self):
+        speed = 0.0
         if keyboard.is_pressed("up"):
-            self.speed = 1.0
+            speed = 1.0
         elif keyboard.is_pressed("down"):
-            self.speed = -1.0
-        else:
-            self.speed = 0.0
-            
-        return CarCommands(speed=self.speed)
+            speed = -1.0
+        return CarCommands(speed=speed)
